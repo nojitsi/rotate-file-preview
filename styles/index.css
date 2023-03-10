@@ -1,0 +1,90 @@
+html,
+body {
+  margin: 0;
+  /* overflow: hidden; */
+  height: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.inherit-size {
+  width: inherit;
+  height: inherit;
+}
+
+.header {
+  color: 'white';
+}
+
+.header-title {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.file-input-container {
+  width: auto;
+  margin: 10px;
+  background-color: antiquewhite;
+  border: 1px solid rgb(65, 50, 28);
+  border-radius: 5px;
+  min-height: 50px;
+  cursor: pointer;
+  flex-wrap: wrap;
+}
+
+.file-input-container-title {
+  padding: 10px;
+  text-align: center;
+}
+
+.file-input-image-item {
+  height: 150px;
+  width: 150px;
+  padding: 10px;
+  display: flex;
+  position: relative;
+}
+
+.file-input-image-item img,
+.file-input-image-item .close-btn img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.file-input-image-item > img {
+  cursor: initial;
+}
+
+.file-input-image-item .close-btn,
+.file-input-image-item .rotate-btn {
+  display: flex;
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  top: 5px;
+}
+
+.file-input-image-item .close-btn {
+  right: 5px;
+}
+
+.file-input-image-item .rotate-btn {
+  left: 5px;
+}
+

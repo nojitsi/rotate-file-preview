@@ -1,0 +1,36 @@
+{
+  "name": "rotate-file-preview",
+  "version": "1.0.0",
+  "description": "File input wrapped in react component, which allows rotate and  delete files before upload",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nojitsi/rotate-file-preview.git"
+  },
+  "keywords": [
+    "file",
+    "input",
+    "rotate",
+    "delete",
+    "preview",
+    "remix",
+    "remixrun"
+  ],
+  "author": "nojitsi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nojitsi/rotate-file-preview/issues"
+  },
+  "homepage": "https://github.com/nojitsi/rotate-file-preview#readme",
+  "dependencies": {
+    "blueimp-load-image": "^5.16.0",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/blueimp-load-image": "^5.16.0",
+    "@types/react": "^18.0.28"
+  }
+}
