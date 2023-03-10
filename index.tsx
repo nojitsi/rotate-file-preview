@@ -2,21 +2,21 @@ import React from 'react'
 import loadImage from 'blueimp-load-image'
 
 const FILE_INPUT_ID = 'multiple-file-rotate-input'
-const FILE_INPUT_CONTAINER_ID = 'multiple-file-rotate-input-container'
-const FILE_INPUT_CONTAINER_TITLE_ID =
+const FILE_INPUT_ID_CONTAINER = 'multiple-file-rotate-input-container'
+const FILE_INPUT_ID_CONTAINER_TITLE =
   'multiple-file-rotate-input-container-title'
-const FILE_INPUT_IMAGE_ID_PREFIX = 'multiple-file-rotate-input-image-'
+const FILE_INPUT_ID_PREFIX_IMAGE = 'multiple-file-rotate-input-image-'
 
-const FILE_INPUT_IMAGE_CONTAINER_CLASS_NAME = 'file-input-container'
-const FILE_INPUT_IMAGE_ITEM_CLASS_NAME = 'file-input-image-item'
-const FILE_INPUT_IMAGE_ITEM_CLOSE_BTN_CLASS_NAME = 'close-btn'
-const FILE_INPUT_IMAGE_ITEM_ROTATE_BTN_CLASS_NAME = 'rotate-btn'
+const FILE_INPUT_IMAGE_CLASS_NAME = 'file-input-image-item'
+const FILE_INPUT_IMAGE_CLASS_NAME_CLOSE_BTN = 'close-btn'
+const FILE_INPUT_IMAGE_CLASS_NAME_ROTATE_BTN = 'rotate-btn'
+const FILE_INPUT_IMAGES_CLASS_NAME_CONTAINER = 'file-input-container'
 
 const FILE_INPUT_IMAGE_INDEX_DATA_ATTRIBUTE_NAME = 'data-index'
 const ROTATE_LEFT_POSITION_INDEX = 8
 
 const getFileInpuntImageId = (index: number) =>
-  `${FILE_INPUT_IMAGE_ID_PREFIX}${index}`
+  `${FILE_INPUT_ID_PREFIX_IMAGE}${index}`
 
 export const fileInputLinks = () => [
   { rel: 'stylesheet', href: 'styles/index.css' },
@@ -41,15 +41,15 @@ export class FileInput extends React.Component<FileInputProps> {
   componentDidMount() {
     const fileInput = document.getElementById(FILE_INPUT_ID) as HTMLInputElement
     const fileInputContainer = document.getElementById(
-      FILE_INPUT_CONTAINER_ID,
+      FILE_INPUT_ID_CONTAINER,
     ) as HTMLElement
     const fileInputContainerTitle = document.getElementById(
-      FILE_INPUT_CONTAINER_TITLE_ID,
+      FILE_INPUT_ID_CONTAINER_TITLE,
     ) as HTMLElement
 
     const clearFilePreviews = () => {
       const filePreviews = document.querySelectorAll(
-        `.${FILE_INPUT_IMAGE_CONTAINER_CLASS_NAME} .${FILE_INPUT_IMAGE_ITEM_CLASS_NAME}`,
+        `.${FILE_INPUT_IMAGES_CLASS_NAME_CONTAINER} .${FILE_INPUT_IMAGE_CLASS_NAME}`,
       )
 
       for (const filePreview of filePreviews) {
@@ -63,7 +63,7 @@ export class FileInput extends React.Component<FileInputProps> {
 
       for (const file of files) {
         const filePreviewItemContainer = document.createElement('div')
-        filePreviewItemContainer.classList.add(FILE_INPUT_IMAGE_ITEM_CLASS_NAME)
+        filePreviewItemContainer.classList.add(FILE_INPUT_IMAGE_CLASS_NAME)
         filePreviewItemContainer.setAttribute(
           FILE_INPUT_IMAGE_INDEX_DATA_ATTRIBUTE_NAME,
           `${fileId}`,
@@ -90,7 +90,7 @@ export class FileInput extends React.Component<FileInputProps> {
 
         const filePreviewItemContainerRotateBtn = document.createElement('div')
         filePreviewItemContainerRotateBtn.classList.add(
-          FILE_INPUT_IMAGE_ITEM_ROTATE_BTN_CLASS_NAME,
+          FILE_INPUT_IMAGE_CLASS_NAME_ROTATE_BTN,
         )
         const rotateBtnImg = document.createElement('img')
         rotateBtnImg.src = this.props.refreshIconPath
@@ -142,7 +142,7 @@ export class FileInput extends React.Component<FileInputProps> {
 
         const filePreviewItemContainerCloseBtn = document.createElement('div')
         filePreviewItemContainerCloseBtn.classList.add(
-          FILE_INPUT_IMAGE_ITEM_CLOSE_BTN_CLASS_NAME,
+          FILE_INPUT_IMAGE_CLASS_NAME_CLOSE_BTN,
         )
         const closeBtnImg = document.createElement('img')
         closeBtnImg.src = this.props.closeIconPath
@@ -158,7 +158,7 @@ export class FileInput extends React.Component<FileInputProps> {
           //remove preview container
           target.parentElement?.parentElement?.remove()
           const fileInputContainer = document.getElementById(
-            FILE_INPUT_CONTAINER_ID,
+            FILE_INPUT_ID_CONTAINER,
           ) as HTMLElement
 
           //rebuild files list and image previews
@@ -212,12 +212,12 @@ export class FileInput extends React.Component<FileInputProps> {
     return (
       <div>
         <div
-          id={FILE_INPUT_CONTAINER_ID}
+          id={FILE_INPUT_ID_CONTAINER}
           className="file-input-container container center"
         >
           <div
             className="file-input-container-title"
-            id={FILE_INPUT_CONTAINER_TITLE_ID}
+            id={FILE_INPUT_ID_CONTAINER_TITLE}
           >
             {this.props.label}
           </div>
