@@ -161,6 +161,7 @@ export class FileInput extends React.Component<FileInputProps> {
             FILE_INPUT_CONTAINER_ID,
           ) as HTMLElement
 
+          //rebuild files list and image previews
           let oldIndex = 0
           let newIndex = 0
           for (const imgFile of fileInput.files as FileList) {
