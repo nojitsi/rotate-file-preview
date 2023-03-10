@@ -21,13 +21,21 @@ const getFileInpuntImageId = (index: number) =>
 export const fileInputLinks = () => [
   { rel: 'stylesheet', href: 'styles/index.css' },
 ]
-export class FileInput extends React.Component<{ label: string }> {
-  constructor(props: { label: string }) {
+
+type FileInputProps = { 
+  label: string,
+  refreshIconPath: string,
+  closeIconPath: string
+}
+export class FileInput extends React.Component<FileInputProps> {
+  constructor(props: FileInputProps) {
     super(props)
   }
 
   static defaultProps = { 
-    label: 'Click to upload files'
+    label: 'Click to upload files',
+    refreshIconPath: '/img/icons/refresh.webp',
+    closeIconPath: '/img/icons/close.webp'
   };
 
   componentDidMount() {
@@ -50,6 +58,7 @@ export class FileInput extends React.Component<{ label: string }> {
     }
 
     const renderFilePreviews = (files: FileList) => {
+      //iterable index
       let fileId = 0
 
       for (const file of files) {
@@ -84,7 +93,7 @@ export class FileInput extends React.Component<{ label: string }> {
           FILE_INPUT_IMAGE_ITEM_ROTATE_BTN_CLASS_NAME,
         )
         const rotateBtnImg = document.createElement('img')
-        rotateBtnImg.src = '/img/icons/refresh.webp'
+        rotateBtnImg.src = this.props.refreshIconPath
         filePreviewItemContainerRotateBtn.appendChild(rotateBtnImg)
 
         filePreviewItemContainerRotateBtn.onclick = async event => {
@@ -93,17 +102,20 @@ export class FileInput extends React.Component<{ label: string }> {
 
           const fileId = getFileContainerId(target)
 
-          const dataTransfer = new DataTransfer()
 
           loadImage(
             (fileInput.files as any)[fileId],
             async (rotatedImgFile: any, data: any) => {
+              const dataTransfer = new DataTransfer()
+
+              //set rotated image to preview
               const imagePreviewHTMLElement = document.getElementById(
                 getFileInpuntImageId(fileId),
               ) as HTMLImageElement
               const rotatedImageContentBase64 = rotatedImgFile.toDataURL()
               imagePreviewHTMLElement.src = rotatedImageContentBase64
 
+              //update file input content
               let index = 0
               for (const imgFile of fileInput.files as FileList) {
                 if (index !== fileId) {
@@ -128,14 +140,12 @@ export class FileInput extends React.Component<{ label: string }> {
           )
         }
 
-        // file name randomization
-
         const filePreviewItemContainerCloseBtn = document.createElement('div')
         filePreviewItemContainerCloseBtn.classList.add(
           FILE_INPUT_IMAGE_ITEM_CLOSE_BTN_CLASS_NAME,
         )
         const closeBtnImg = document.createElement('img')
-        closeBtnImg.src = '/img/icons/close.webp'
+        closeBtnImg.src = this.props.closeIconPath
         filePreviewItemContainerCloseBtn.appendChild(closeBtnImg)
         filePreviewItemContainerCloseBtn.onclick = async event => {
           event.stopPropagation()
@@ -145,6 +155,7 @@ export class FileInput extends React.Component<{ label: string }> {
 
           const dataTransfer = new DataTransfer()
 
+          //remove preview container
           target.parentElement?.parentElement?.remove()
           const fileInputContainer = document.getElementById(
             FILE_INPUT_CONTAINER_ID,
